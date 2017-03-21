@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.jws.soap.SOAPBinding;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -20,5 +21,10 @@ public class UserRepo {
     public User findByPrimaryKey(int id) {
         User user = entityManager.find(User.class, id);
         return user;
+    }
+
+    public void saveUser(User user) {
+        entityManager.merge(user);
+
     }
 }

@@ -53,4 +53,8 @@ public class User {
         this.userLastname = userLastname;
 
     }
+
+    public void saveUser() {
+
+    }
 }
