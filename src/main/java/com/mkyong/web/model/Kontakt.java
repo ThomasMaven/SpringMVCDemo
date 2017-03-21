@@ -6,12 +6,13 @@ import javax.persistence.*;
  * Created by ttomaka on 21.03.2017.
  */
 @Entity
-@Table(name="kontakt")
+@Table
 public class Kontakt {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int kontaktId;
+    @Column
+    private int id;
+
     @Column(name = "wartosc")
     private String value;
     @Column(name = "typ_id")

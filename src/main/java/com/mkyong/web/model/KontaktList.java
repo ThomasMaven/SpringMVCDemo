@@ -6,47 +6,29 @@ import javax.persistence.*;
  * Created by ttomaka on 21.03.2017.
  */
 @Entity
-@Table(name="kontakt_list")
+@Table(name = "kontakt_list")
 public class KontaktList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column
     private int id;
 
-    @Column(name = "id_os")
-    private int idOsoby;
-
-    @Column(name = "id_kontaktu")
-    private int idKontaktu;
-
-    @ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER)
-    @JoinColumn(name ="id_os", insertable = false, updatable=false)
+    @OneToOne(cascade = {CascadeType.ALL}, optional = false)
+    @JoinColumn(name = "id_os", referencedColumnName = "id", nullable = false)
     private User osoba;
-    @ManyToOne(targetEntity = Kontakt.class, fetch = FetchType.EAGER)
-    @JoinColumn(name ="id_kontaktu", insertable = false, updatable=false)
+
+
+    @OneToOne(cascade = {CascadeType.ALL}, optional = false)
+    @JoinColumn(name = "id_kontaktu", referencedColumnName = "id", nullable = false)
     private Kontakt kontakt;
+
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getIdOsoby() {
-        return idOsoby;
-    }
-
-    public void setIdOsoby(int idOsoby) {
-        this.idOsoby = idOsoby;
-    }
-
-    public int getIdKontaktu() {
-        return idKontaktu;
-    }
-
-    public void setIdKontaktu(int idKontaktu) {
-        this.idKontaktu = idKontaktu;
     }
 
 
@@ -57,7 +39,21 @@ public class KontaktList {
     }
 
 
+    public User getOsoba() {
+        return osoba;
+    }
 
+    public void setOsoba(User osoba) {
+        this.osoba = osoba;
+    }
+
+    public Kontakt getKontakt() {
+        return kontakt;
+    }
+
+    public void setKontakt(Kontakt kontakt) {
+        this.kontakt = kontakt;
+    }
 
 
 }

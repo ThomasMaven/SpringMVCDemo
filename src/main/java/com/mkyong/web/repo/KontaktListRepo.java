@@ -35,4 +35,8 @@ public class KontaktListRepo {
         }
         return returnString;
     }
+
+    public void saveKontaktList(KontaktList kontaktList) {
+        entityManager.persist(kontaktList);
+    }
 }

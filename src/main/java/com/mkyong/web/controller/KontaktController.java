@@ -1,7 +1,7 @@
 package com.mkyong.web.controller;
 
 
-import com.mkyong.web.model.Employee;
+import com.mkyong.web.model.KontaktList;
 import com.mkyong.web.model.User;
 import com.mkyong.web.repo.KontaktListRepo;
 import com.mkyong.web.repo.UserRepo;
@@ -37,11 +37,27 @@ public class KontaktController {
     }
 
     @RequestMapping(value = "/kontakt/addContact", method = RequestMethod.POST)
-    public String showKontaktList(@ModelAttribute("user")User user, ModelMap model, BindingResult result) {
+    public String addContact(@ModelAttribute("user")User user, ModelMap model, BindingResult result) {
         userRepo.saveUser(user);
         model.addAttribute("userFirstname", user.getUserFirstname());
         model.addAttribute("userLastname", user.getUserLastname());
         model.addAttribute("saved", "added!");
         return "kontaktAddForm";
+    }
+
+
+
+
+
+    @RequestMapping(value = "/kontakt/addFormUserAndKontakt", method = RequestMethod.GET)
+    public ModelAndView showFormUserAndKontakt() {
+        return new ModelAndView("kontaktAddFormUserAndKontakt", "kontaktList", new KontaktList());
+    }
+
+    @RequestMapping(value = "/kontakt/addContactAndUser", method = RequestMethod.POST)
+    public String addContactAndUser(@ModelAttribute("kontaktList")KontaktList kontaktList, ModelMap model, BindingResult result) {
+        kontaktListRepo.saveKontaktList(kontaktList);
+        model.addAttribute("saved", "SAVED!");
+        return "kontaktAddFormUserAndKontakt";
     }
 }
