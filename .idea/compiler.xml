@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="mvc" />
+        <module name="spring3-mvc-maven-xml-hello-world" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="mvc" target="1.8" />
+      <module name="spring3-mvc-maven-xml-hello-world" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
