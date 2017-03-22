@@ -31,12 +31,21 @@ public class KontaktList {
         this.id = id;
     }
 
+    public KontaktList() {
+    }
+
+    public KontaktList(User osoba, Kontakt kontakt) {
+        this.osoba = osoba;
+        this.kontakt = kontakt;
+    }
 
     @Override
     public String toString() {
         return "Id: " + getId() + " User: " + osoba.getUserFirstname() + "  " + osoba.getUserLastname()
-                + " Value: " + kontakt.getValue() + "<br>";
+                + " Value: " + kontakt.getValue() + " Type: "
+                + Kontakt.Type.get(kontakt.getTypeId()) + "<br>";
     }
+
 
 
     public User getOsoba() {

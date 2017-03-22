@@ -1,10 +1,10 @@
 package com.mkyong.web.controller;
 
-
-import com.mkyong.web.model.KontaktList;
 import com.mkyong.web.model.User;
 import com.mkyong.web.repo.KontaktListRepo;
+import com.mkyong.web.repo.UserDTO;
 import com.mkyong.web.repo.UserRepo;
+import com.mkyong.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,6 +24,8 @@ public class KontaktController {
     KontaktListRepo kontaktListRepo;
     @Autowired
     UserRepo userRepo;
+    @Autowired
+    UserService userService;
 
     @RequestMapping(value = "/kontakt", method = RequestMethod.GET)
     public String showKontaktList(ModelMap model) {
@@ -51,13 +53,13 @@ public class KontaktController {
 
     @RequestMapping(value = "/kontakt/addFormUserAndKontakt", method = RequestMethod.GET)
     public ModelAndView showFormUserAndKontakt() {
-        return new ModelAndView("kontaktAddFormUserAndKontakt", "kontaktList", new KontaktList());
+        return new ModelAndView("kontaktAddFormUserAndKontakt", "kontaktList", new UserDTO());
     }
 
     @RequestMapping(value = "/kontakt/addContactAndUser", method = RequestMethod.POST)
-    public String addContactAndUser(@ModelAttribute("kontaktList")KontaktList kontaktList, ModelMap model, BindingResult result) {
-        kontaktListRepo.saveKontaktList(kontaktList);
+    public String addContactAndUser(@ModelAttribute("kontaktList")UserDTO userDTO, ModelMap model, BindingResult result) {
+        userService.saveUserContacts(userDTO);
         model.addAttribute("saved", "SAVED!");
-        return "kontaktAddFormUserAndKontakt";
+        return "kontaktList";
     }
 }

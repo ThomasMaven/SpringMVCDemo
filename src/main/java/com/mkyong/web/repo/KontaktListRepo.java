@@ -1,8 +1,6 @@
 package com.mkyong.web.repo;
 
-import com.mkyong.web.model.Kontakt;
 import com.mkyong.web.model.KontaktList;
-import com.mkyong.web.model.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,7 +34,8 @@ public class KontaktListRepo {
         return returnString;
     }
 
+
     public void saveKontaktList(KontaktList kontaktList) {
-        entityManager.persist(kontaktList);
+        entityManager.merge(kontaktList);
     }
 }
